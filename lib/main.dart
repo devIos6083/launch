@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:launch/firebase_options.dart';
 import 'package:launch/di/locator.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
 import 'package:launch/views/auth/login_screen.dart';
 import 'package:launch/views/auth/register_screen.dart';
 import 'package:launch/views/countdown/countdown_screen.dart';
@@ -18,6 +19,7 @@ import 'package:launch/viewmodels/activity_viewmodel.dart';
 import 'package:launch/viewmodels/countdown_viewmodel.dart';
 import 'package:launch/viewmodels/timer_viewmodel.dart';
 import 'package:launch/viewmodels/profile_viewmodel.dart';
+import 'config/api_keys.dart';
 
 Future<void> main() async {
   // Flutter 바인딩 초기화
@@ -34,6 +36,7 @@ Future<void> main() async {
 
   // 의존성 주입 설정
   setupLocator();
+  kakao.KakaoSdk.init(nativeAppKey: ApiKeys.kakaoNativeAppKey);
 
   // 상태 바 스타일 설정 (다크 테마)
   SystemChrome.setSystemUIOverlayStyle(

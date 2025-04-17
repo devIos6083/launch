@@ -64,13 +64,25 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _signInWithKakao() async {
     setState(() => _isLoading = true);
 
-    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-    final success = await authViewModel.signInWithKakao();
+    try {
+      final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+      final success = await authViewModel.signInWithKakao();
 
-    setState(() => _isLoading = false);
-
-    if (success && mounted) {
-      Navigator.of(context).pushReplacementNamed('/home');
+      if (success && mounted) {
+        Navigator.of(context).pushReplacementNamed('/home');
+      }
+    } catch (e) {
+      // 카카오 로그인 취소 시 에러 처리
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('카카오 로그인이 취소되었습니다.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      setState(() => _isLoading = false);
     }
   }
 
@@ -269,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: _isLoading ? null : _signInWithKakao,
                         backgroundColor: const Color(0xFFFEE500),
                         textColor: const Color(0xFF3A1D1D),
-                        icon: 'img/kakao.png',
+                        icon: 'img/kakao_login.png',
                       ),
                       const SizedBox(height: 12),
 

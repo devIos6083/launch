@@ -3,16 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:launch/core/constant/colors.dart';
 
 class AppTheme {
-  static ThemeData get darkTheme {
+  static ThemeData get theme {
     return ThemeData(
       useMaterial3: true,
-      // 기본 색상 테마
-      colorScheme: const ColorScheme.dark(
+      // 기본 색상 테마 - 라이트 테마로 변경
+      colorScheme: ColorScheme.light(
         primary: AppColors.primaryColor,
-        onPrimary: Colors.black,
+        onPrimary: Colors.white,
         secondary: AppColors.accentColor,
         surface: AppColors.surfaceColor,
-        onSurface: Colors.white,
+        onSurface: AppColors.primaryTextColor,
         error: AppColors.errorColor,
       ),
 
@@ -20,16 +20,16 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.backgroundColor,
 
       // 앱바 테마
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: false,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: AppColors.primaryTextColor),
         titleTextStyle: TextStyle(
           fontFamily: 'jua',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+          color: AppColors.primaryTextColor,
         ),
       ),
 
@@ -45,7 +45,7 @@ class AppTheme {
           textStyle: const TextStyle(
             fontFamily: 'jua',
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
           ),
           elevation: 0,
         ),
@@ -58,7 +58,7 @@ class AppTheme {
           textStyle: const TextStyle(
             fontFamily: 'jua',
             fontSize: 14,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -72,78 +72,80 @@ class AppTheme {
           vertical: 16,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide.none,
         ),
-        hintStyle: const TextStyle(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            color: AppColors.primaryColor.withOpacity(0.5),
+            width: 1.5,
+          ),
+        ),
+        hintStyle: TextStyle(
           color: AppColors.hintTextColor,
           fontSize: 14,
+          fontFamily: 'jua',
         ),
-        errorStyle: const TextStyle(
+        errorStyle: TextStyle(
           color: AppColors.errorColor,
           fontSize: 12,
+          fontFamily: 'jua',
         ),
       ),
 
       // 텍스트 테마
       textTheme: TextTheme(
         displayLarge: GoogleFonts.getFont(
-          'Roboto',
-          textStyle: const TextStyle(
-            fontFamily: 'jua',
+          'jua',
+          textStyle: TextStyle(
             fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            color: AppColors.primaryTextColor,
           ),
         ),
         displayMedium: GoogleFonts.getFont(
-          'Roboto',
-          textStyle: const TextStyle(
-            fontFamily: 'jua',
+          'jua',
+          textStyle: TextStyle(
             fontSize: 26,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            color: AppColors.primaryTextColor,
           ),
         ),
         displaySmall: GoogleFonts.getFont(
-          'Roboto',
-          textStyle: const TextStyle(
-            fontFamily: 'jua',
+          'jua',
+          textStyle: TextStyle(
             fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            color: AppColors.primaryTextColor,
           ),
         ),
         headlineMedium: GoogleFonts.getFont(
-          'Roboto',
-          textStyle: const TextStyle(
-            fontFamily: 'jua',
+          'jua',
+          textStyle: TextStyle(
             fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            color: AppColors.primaryTextColor,
           ),
         ),
         titleLarge: GoogleFonts.getFont(
-          'Roboto',
-          textStyle: const TextStyle(
-            fontFamily: 'jua',
+          'jua',
+          textStyle: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            color: AppColors.primaryTextColor,
           ),
         ),
         bodyLarge: GoogleFonts.getFont(
-          'Roboto',
-          textStyle: const TextStyle(
-            fontFamily: 'jua',
+          'jua',
+          textStyle: TextStyle(
             fontSize: 16,
-            color: Colors.white,
+            color: AppColors.primaryTextColor,
           ),
         ),
         bodyMedium: GoogleFonts.getFont(
-          'Roboto',
-          textStyle: const TextStyle(
-            fontFamily: 'jua',
+          'jua',
+          textStyle: TextStyle(
             fontSize: 14,
             color: AppColors.secondaryTextColor,
           ),
@@ -155,16 +157,19 @@ class AppTheme {
         color: AppColors.surfaceColor,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
         ),
+        shadowColor: Colors.black.withOpacity(0.05),
       ),
 
       // 다이얼로그 테마
       dialogTheme: DialogTheme(
         backgroundColor: AppColors.surfaceColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(24),
         ),
+        elevation: 3,
+        shadowColor: Colors.black.withOpacity(0.1),
       ),
 
       // 바텀시트 테마
@@ -172,11 +177,84 @@ class AppTheme {
         backgroundColor: AppColors.surfaceColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+            topLeft: Radius.circular(28),
+            topRight: Radius.circular(28),
           ),
         ),
+        elevation: 3,
+        shadowColor: Colors.black.withOpacity(0.1),
       ),
+
+      // 아이콘 테마
+      iconTheme: IconThemeData(
+        color: AppColors.primaryTextColor,
+        size: 22,
+      ),
+
+      // 스위치 테마
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryColor;
+          }
+          return Colors.white;
+        }),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryColor.withOpacity(0.3);
+          }
+          return AppColors.cardHighlightColor;
+        }),
+      ),
+
+      // 체크박스 테마
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryColor;
+          }
+          return AppColors.cardHighlightColor;
+        }),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+      ),
+    );
+  }
+
+  // 시스템 테마가 다크모드일 때를 위한 라이트 테마 (파스텔 다크 테마)
+  static ThemeData get darkPastelTheme {
+    return ThemeData(
+      useMaterial3: true,
+      // 다크 모드에서도 파스텔 느낌을 유지하는 색상 테마
+      colorScheme: ColorScheme.dark(
+        primary: AppColors.primaryColor,
+        onPrimary: Colors.white,
+        secondary: AppColors.accentColor,
+        // 어두운 배경에 맞는 더 어두운 파스텔 색상들
+        surface: Color(0xFF3A3045),
+        onSurface: Colors.white,
+        error: AppColors.errorColor,
+      ),
+
+      // 배경색
+      scaffoldBackgroundColor: Color(0xFF2A2235), // 어두운 보라색 배경
+
+      // 앱바 테마
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: false,
+        iconTheme: IconThemeData(color: Colors.white),
+        titleTextStyle: TextStyle(
+          fontFamily: 'jua',
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+      ),
+
+      // 그 외 테마 요소들은 라이트 테마와 유사하지만 색상이 다크 모드에 맞게 조정됨...
     );
   }
 }

@@ -32,7 +32,7 @@ class LaunchModeApp extends StatelessWidget {
       child: MaterialApp(
         title: 'LAUNCH MODE',
         debugShowCheckedModeBanner: false,
-        theme: AppTheme.darkTheme,
+        theme: AppTheme.theme,
         initialRoute: '/splash',
         routes: {
           '/splash': (context) => const SplashScreen(),
