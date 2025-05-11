@@ -43,6 +43,8 @@
 <tr>
   <td align="center" width="33%"><strong>스플래시 & 회원가입 화면</strong><br><img src="https://github.com/user-attachments/assets/ea7a579b-95a6-4349-8278-df5915c0c0ad" width="100%"></td>
   <td align="center" width="33%"><strong>홈 화면 & 활동 추가</strong><br><img src="https://github.com/user-attachments/assets/897d5b87-7de9-4ef9-9d1e-490e9009add0" width="100%"></td>
+  </tr>
+  </tr>
   <td align="center" width="33%"><strong>countdown + focus timer</strong><br><img src="https://github.com/user-attachments/assets/083657e0-8655-4f2e-91b7-8c2b43d507d8" width="100%"></td>
  <td align="center" width="33%"><strong>작업 완료 & 로그아웃</strong><br><img src="https://github.com/user-attachments/assets/f3ab6b9a-55ec-48b2-bae6-835a778c582c" width="100%"></td>
 </tr>
