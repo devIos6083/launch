@@ -44,7 +44,7 @@
 <tr>
   <td align="center" width="33%"><strong>스플래시 & 회원가입 화면</strong><br><img src="https://github.com/user-attachments/assets/ea7a579b-95a6-4349-8278-df5915c0c0ad" width="100%"></td>
   <td align="center" width="33%"><strong>비밀번호 재설정 화면</strong><br><img src="https://github.com/user-attachments/assets/8fd071d6-9d2b-4eae-9860-0171bcc6db4c" width="100%"></td>
-  <td align="center" width="33%"><strong>홈 화면 & 활동 추가</strong><br><img src="https://github.com/user-attachments/assets/897d5b87-7de9-4ef9-9d1e-490e9009add0" width="100%"></td>
+  <td align="center" width="33%"><strong>홈 화면 & 활동 추가</strong><br><img src="[https://github.com/user-attachments/assets/897d5b87-7de9-4ef9-9d1e-490e9009add0](https://github.com/user-attachments/assets/633c9cd9-0c2c-4173-9514-3a31e9ba6192)" width="100%"></td>
 </tr>
 <tr>
   <td align="center" width="33%"><strong>카운트다운 & 타이머 화면</strong><br><img src="https://github.com/user-attachments/assets/89f9156b-ad2a-499b-8b30-c0efa9362680" width="100%"></td>
