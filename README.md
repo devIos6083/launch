@@ -32,6 +32,7 @@
 | **2024.04.18** | 📌 **UI 개선 및 마무리**   <br> - 알림 기능 구현 (타이머 완료 시)  <br> - UI/UX 디테일 개선  <br> - 성능 최적화 및 버그 수정  |
 | **2024.04.29** | 📌 **UI 개선 및 코드 리팩토링**   <br> - 카카오 로그인 구현  <br> - 데이터 구조 개선  |
 | **2024.05.11** | 📌 **타이머 UX 개선 및 버그 수정**   <br> - 타이머 색상 및 디자인 개선 <br> - 카운트다운 음성 기능 수정 <br> - 타이머 완료 후 버튼 동작 개선 |
+| **2024.05.18** | 📌 **통계 업데이트 버그 수정**   <br> - 중복 통계 업데이트 문제 해결 <br> - 요일별 진행 상황 업데이트 수정 <br> - 카운트다운 완료 후 화면 전환 논리 개선 <br> - 불필요한 수동 새로고침 버튼 제거 |
 
 ---
 
@@ -42,9 +43,13 @@
 <table>
 <tr>
   <td align="center" width="33%"><strong>스플래시 & 회원가입 화면</strong><br><img src="https://github.com/user-attachments/assets/ea7a579b-95a6-4349-8278-df5915c0c0ad" width="100%"></td>
+  <td align="center" width="33%"><strong>비밀번호 재설정 화면</strong><br><img src="https://github.com/user-attachments/assets/8fd071d6-9d2b-4eae-9860-0171bcc6db4c" width="100%"></td>
   <td align="center" width="33%"><strong>홈 화면 & 활동 추가</strong><br><img src="https://github.com/user-attachments/assets/897d5b87-7de9-4ef9-9d1e-490e9009add0" width="100%"></td>
-  <td align="center" width="33%"><strong>countdown + focus timer</strong><br><img src="https://github.com/user-attachments/assets/083657e0-8655-4f2e-91b7-8c2b43d507d8" width="100%"></td>
- <td align="center" width="33%"><strong>작업 완료 & 로그아웃</strong><br><img src="https://github.com/user-attachments/assets/f3ab6b9a-55ec-48b2-bae6-835a778c582c" width="100%"></td>
+</tr>
+<tr>
+  <td align="center" width="33%"><strong>카운트다운 & 타이머 화면</strong><br><img src="https://github.com/user-attachments/assets/89f9156b-ad2a-499b-8b30-c0efa9362680" width="100%"></td>
+  <td align="center" width="33%"><strong>작업 완료 & 결과 분석</strong><br><img src="https://github.com/user-attachments/assets/d08aa950-6309-4661-8385-59ef144e28c5" width="100%"></td>
+  <td align="center" width="33%"></td>
 </tr>
 </table>
 
@@ -67,6 +72,18 @@
 ### 🔹 문제 4: 앱 재설치 이후 작동 문제
 - **원인:** 로컬 데이터나 캐시, 인증 토큰 문제로 인해 앱 재시작만으로는 해결되지 않는 문제 발생
 - **해결:** 앱 삭제 후 재설치를 통해 모든 로컬 데이터와 캐시를 초기화하여 해결. 이후 코드에서 인증 및 데이터 초기화 로직을 개선
+
+### 🔹 문제 5: 통계 데이터 중복 업데이트 문제
+- **원인:** CountdownScreen과 FocusTimerScreen 두 곳에서 모두 통계를 업데이트하여 활동 완료 수가 두 배로 증가하는 문제
+- **해결:** FocusTimerScreen의 _completeTimer 메서드에서만 통계를 업데이트하도록 코드 수정
+
+### 🔹 문제 6: 요일별 진행 상황 업데이트 누락
+- **원인:** 활동 완료 시 총 활동 수는 증가하지만 weeklyProgress 맵의 요일별 데이터가 제대로 업데이트되지 않음
+- **해결:** 통계 업데이트 시 현재 요일을 정확히 파악하여 weeklyProgress에 반영하도록 로직 개선
+
+### 🔹 문제 7: 카운트다운 완료 전 화면 전환 버그
+- **원인:** 카운트다운이 완료되지 않은 상태에서 포커스 타이머 화면으로 전환되는 현상
+- **해결:** 카운트다운 완료 조건을 더 엄격하게 검사하고, 딜레이를 추가하여 확실히 종료된 후에만 화면이 전환되도록 수정
 
 ---
 
@@ -103,6 +120,16 @@
 - 로컬 캐싱을 통한 오프라인 데이터 접근성 향상
 - 네트워크 연결 복구 시 자동 동기화 구현
 
+### ✅ 7. Flutter 상태 관리 최적화 (2024-05-18 추가)
+- Provider 패턴에서 중복 상태 업데이트 방지 방법 학습
+- 단방향 데이터 흐름을 유지하여 예측 가능한 상태 변화 구현
+- 화면 간 데이터 전달 시 적절한 시점에 상태 업데이트하는 패턴 적용
+
+### ✅ 8. UI/UX 개선 (2024-05-18 추가)
+- 사용자 경험 향상을 위한 불필요한 UI 요소 제거 (수동 새로고침 버튼)
+- 타이머 완료 시 일관된 동작과 시각적 피드백 제공
+- 자동 데이터 동기화를 통한 앱 사용성 향상
+
 ---
 
 ## 📌 느낀 점
@@ -113,9 +140,13 @@ Firebase Realtime Database를 활용하면서 실시간 데이터 동기화의 �
 
 또한 Flutter의 Provider 패턴과 Firebase의 실시간 데이터베이스를 결합하여 효율적인 상태 관리 아키텍처를 구축한 것이 가장 큰 성과라고 생각합니다. 이를 통해 앱의 복잡성이 증가하더라도 확장성과 유지보수성을 유지할 수 있게 되었습니다.
 
+오늘(2024-05-18)은 특히 데이터 업데이트 로직에서 발생하는 복잡한 버그들을 해결하면서 상태 관리의 중요성을 다시 한번 체감했습니다. 같은 데이터를 여러 곳에서 동시에 업데이트하는 것의 위험성과, 단일 책임 원칙에 따라 데이터 변경 지점을 명확하게 정의하는 것이 얼마나 중요한지 배웠습니다. 이런 경험은 향후 더 복잡한 앱을 개발할 때 큰 도움이 될 것입니다.
+
 ---
 
 ## 📌 향후 계획
 
 1. **데이터 분석 기능 추가**: 사용자의 활동 패턴을 분석하여 생산성 인사이트 제공
-
+2. **UI 테마 기능**: 다크 모드 및 사용자 지정 테마 지원
+3. **푸시 알림 기능 강화**: 사용자 활동 패턴에 맞춘 맞춤형 알림 시스템 개발
+4. **웹 버전 개발**: 크로스 플랫폼 지원을 통한 접근성 향상
